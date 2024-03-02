@@ -1,8 +1,8 @@
-const express = require("express");
-const { auth } = require('express-openid-connect');
-
 require("dotenv").config();
 
+const express = require("express");
+const mongoose = require("mongoose");
+const { auth } = require("express-openid-connect");
 
 const config = {
   authRequired: false,
@@ -10,10 +10,10 @@ const config = {
   secret: process.env.SECRET,
   baseURL: process.env.BASEURL,
   clientID: process.env.CLIENTID,
-  issuerBaseURL: process.env.ISSUERBASEURL
+  issuerBaseURL: process.env.ISSUERBASEURL,
 };
 console.log("PORT:", process.env.BASEURL);
-const user = require("./routes/user");
+const user = require("./routes/users");
 const app = express();
 
 app.use(express.json());
@@ -27,10 +27,18 @@ app.use(auth(config));
 
 app.use("/api/users", user);
 app.get("/", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
   // res.json({ mssg: "works" });
 });
 
-app.listen(process.env.PORT, () => {
-  console.log("listening on port", process.env.PORT);
-});
+//connect to db
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("listening on port", process.env.PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
