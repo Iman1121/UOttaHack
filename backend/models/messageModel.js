@@ -19,7 +19,11 @@ const messageSchema = new Schema(
     hasPicture: {
         type: Boolean,
         default: false,
-    }
+    },
+    isNote: {
+      type: Boolean,
+      default: false, 
+    },
   },
   { timestamps: true }
 );
