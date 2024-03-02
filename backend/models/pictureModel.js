@@ -2,26 +2,22 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const messageSchema = new Schema(
+const pictureSchema = new Schema(
   {
-    lecId: {
+    msgId: {
       type: Number,
       required: true,
     },
     userId: {
       type: Number,
-
-    text: {
-      type: String,
       required: true,
     },
-    hasPicture: {
-        type: Boolean,
-        default: false,
+    image: {
+      type: Buffer,
+      required: true,
     }
-
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Message", messageSchema);
+module.exports = mongoose.model("Picture", pictureSchema);
