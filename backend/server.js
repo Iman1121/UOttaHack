@@ -1,7 +1,18 @@
+const express = require("express");
+const { auth } = require('express-openid-connect');
+
 require("dotenv").config();
 
-const express = require("express");
 
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUERBASEURL
+};
+console.log("PORT:", process.env.BASEURL);
 const app = express();
 
 app.use((req, res, next) => {
@@ -9,8 +20,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(auth(config));
+
 app.get("/", (req, res) => {
-  res.json({ mssg: "works" });
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+  // res.json({ mssg: "works" });
 });
 
 app.listen(process.env.PORT, () => {
