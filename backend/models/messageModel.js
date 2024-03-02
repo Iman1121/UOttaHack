@@ -10,8 +10,7 @@ const messageSchema = new Schema(
     },
     userId: {
       type: Number,
-      required: true,
-    },
+
     text: {
       type: String,
       required: true,
@@ -20,6 +19,7 @@ const messageSchema = new Schema(
         type: Boolean,
         default: false,
     }
+
   },
   { timestamps: true }
 );
