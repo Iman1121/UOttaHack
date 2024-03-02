@@ -1,0 +1,101 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the container takes up at least the viewport height */
+  background-color: rgb(137, 2, 62);
+}
+
+.header {
+  flex-grow: 0; /* Make the header occupy more space */
+  flex-shrink: 0; /* Prevent the header from shrinking */
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly along the main axis */
+  align-items: center; /* Center items along the cross axis */
+  background-color: rgb(137, 2, 62);
+  padding: 10px; /* Adjust padding as needed */
+  
+}
+
+.main-content {
+  flex-grow: 1; /* Let the main content occupy remaining space */
+  display: flex; /* Ensure the main content is a flex container */
+  margin: 0 10px;
+}
+.section0 {
+
+  background-color: rgb(204,113,120);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 56%;
+  margin: 0 15px;
+
+  /* width: 750px; */
+  
+}
+.section1 {
+
+  background-color: rgb(204,113,120);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1; 
+  width: 35%;
+  margin: 0 25px;
+}
+.sectionChannel {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1; 
+  height: 585px;
+  width: 20%;
+  max-width: calc(20% - 50px); /* Adjust the margin according to your needs */
+  margin: 0 15px;
+}
+
+.section2 {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 10px;
+  height: 585px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin: 0 20px;
+}
+
+
+
+.main-content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.Chat {
+
+  border-radius: 10px;
+  padding: 10px;
+
+  flex: 1; 
+
+}
+.Notes {
+
+  border-radius: 10px;
+  padding: 10px;
+
+  flex: 1; 
+
+}
+.Channels {
+  border-radius: 10px;
+  padding: 10px;
+
+  flex: 1; 
+
+}
+.main-content {
+  display: flex;
+  flex-grow: 1;
+}
