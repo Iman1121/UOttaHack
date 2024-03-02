@@ -1,27 +1,18 @@
 const express = require("express");
 const User = require("../models/userModel");
+const {
+  createUser,
+  getUser,
+  getUsers,
+} = require("../controllers/userController");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ mssg: "works" });
-});
+router.get("/", getUsers);
 
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "id" });
-});
+router.get("/:id", getUser);
 
-router.post("/", async (req, res) => {
-  const { email, name, isStudent, isProf } = req.body;
-
-  try {
-    const user = await User.create({ email, name, isStudent, isProf });
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-  res.json({ mssg: "Post" });
-});
+router.post("/", createUser);
 
 router.delete("/:id", (req, res) => {
   res.json({ mssg: "delete" });
