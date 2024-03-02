@@ -17,46 +17,45 @@ const getPicturesByMessage = async (req, res) => {
   }
   const pictures = await User.find({ msgId: id }).sort({ createdAt: -1 });
 
-  if (!user) {
-    return res.status(404).json({ error: "No such user" });
+  if (!pictures) {
+    return res.status(404).json({ error: "No such pictures" });
   }
 
-  res.status(200).json(user);
+  res.status(200).json(pictures);
 };
 
 //create user
-const createUser = async (req, res) => {
-  const { email, name, isStudent, isProf } = req.body;
+const createPicture = async (req, res) => {
+  const { msgId, userId, image } = req.body;
 
   try {
-    const user = await User.create({ email, name, isStudent, isProf });
-    res.status(200).json(user);
+    const picture = await Picture.create({ msgId, userId, image });
+    res.status(200).json(picture);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
 //delete user
-const deleteUser = async (req, res) => {
+const deletePicture = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such user" });
+    return res.status(404).json({ error: "No such picture" });
   }
 
-  const user = await User.findOneAndDelete({ _id: id });
+  const picture = await Picture.findOneAndDelete({ _id: id });
 
-  if (!user) {
-    return res.status(404).json({ error: "No such user" });
+  if (!picture) {
+    return res.status(404).json({ error: "No such picture" });
   }
 
-  res.status(200).json(user);
+  res.status(200).json(picture);
 };
 
 module.exports = {
-  createUser,
-  getUser,
-  getUsers,
-  deleteUser,
-  updateUser,
+  createPicture,
+  getPictures,
+  getPicturesByMessage,
+  deletePicture,
 };

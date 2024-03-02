@@ -39,6 +39,7 @@ app.use("/api/courses", course);
 app.use("/api/notes", notes);
 app.use("/api/lectures", lecture);
 app.use("/api/takes", takes);
+app.use("/api/pictures", pictures);
 
 //auth
 app.get("/", (req, res) => {
