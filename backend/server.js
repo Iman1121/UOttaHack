@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const bodyParser = require('body-parser')
 const express = require("express");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
@@ -23,7 +24,7 @@ const config = {
 };
 console.log("PORT:", process.env.BASEURL);
 const app = express();
-
+app.use(bodyParser({limit: '50mb'}))
 app.use(express.json());
 
 app.use((req, res, next) => {
