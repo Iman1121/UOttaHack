@@ -1,26 +1,26 @@
-const express = require("express");
-const Takes = require("../models/takeModel");
-const {
-  createTakes,
-  getTakes,
-  getAllTakes,
-  updateTakes,
-  deleteTakes,
-  getTakessByLecture,
-} = require("../controllers/takesController");
+// const express = require("express");
+// const Takes = require("../models/takesModel");
+// const {
+//   createTakes,
+//   getTakes,
+//   getAllTakes,
+//   updateTakes,
+//   deleteTakes,
+//   getTakessByLecture,
+// } = require("../controllers/takesController");
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get("/", getAllTakes);
+// router.get("/", getAllTakes);
 
-router.get("/:id", getTakes);
+// router.get("/:id", getTakes);
 
-router.post("/", createTakes);
+// router.post("/", createTakes);
 
-router.delete("/:id", deleteTakes);
+// router.delete("/:id", deleteTakes);
 
-router.patch("/:id", updateTakes);
+// router.patch("/:id", updateTakes);
 
-router.get("/bylecture/:id", getTakessByLecture);
+// router.get("/bylecture/:id", getTakessByLecture);
 
-module.exports = router;
+// module.exports = router;
