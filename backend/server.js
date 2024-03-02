@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
@@ -13,6 +13,7 @@ const notes = require("./routes/notes");
 const lecture = require("./routes/lectures");
 // const takes = require("./routes/takes");
 const pictures = require("./routes/pictures");
+const summaries = require("./routes/summaries");
 
 const config = {
   authRequired: false,
@@ -24,7 +25,7 @@ const config = {
 };
 console.log("PORT:", process.env.BASEURL);
 const app = express();
-app.use(bodyParser({limit: '50mb'}))
+app.use(bodyParser({ limit: "50mb" }));
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -42,6 +43,7 @@ app.use("/api/notes", notes);
 app.use("/api/lectures", lecture);
 // app.use("/api/takes", takes);
 app.use("/api/pictures", pictures);
+app.use("/api/pictures", summaries);
 // app.use("/api/takes", takes);
 
 //auth
