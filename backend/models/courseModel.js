@@ -2,23 +2,18 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const courseSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    name: {
+    timeslot: {
       type: String,
       required: true,
     },
-    isStudent: {
-      type: Boolean,
-      default: true,
+    daySlot: {
+      type: String,
+      required: true,
     }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Course", courseSchema);
