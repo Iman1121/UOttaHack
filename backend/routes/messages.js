@@ -7,6 +7,7 @@ const {
   updateMessage,
   deleteMessage,
   getMessagesByLecture,
+  getMessagesByLectureNotes
 } = require("../controllers/messageController");
 
 const router = express.Router();
@@ -21,6 +22,8 @@ router.delete("/:id", deleteMessage);
 
 router.patch("/:id", updateMessage);
 
-router.get("/bylecture/:id", getMessagesByLecture);
+router.get("/byLecture/:id", getMessagesByLecture);
+
+router.get("/byLectureNotes/:id", getMessagesByLectureNotes);
 
 module.exports = router;

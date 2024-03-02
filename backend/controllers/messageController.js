@@ -12,7 +12,21 @@ const getMessagesByLecture = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const messages = await Message.find({ lecId: id });
+    const messages = await Message.find({ lecId: id, isNote: false });
+    if (!messages) {
+      return res.status(404).send("Messages not found");
+    }
+    res.status(200).json(messages);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const getMessagesByLectureNotes = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const messages = await Message.find({ lecId: id, isNote: true });
     if (!messages) {
       return res.status(404).send("Messages not found");
     }
@@ -40,10 +54,10 @@ const getMessage = async (req, res) => {
 
 //create user
 const createMessage = async (req, res) => {
-  const { lecId, userId, text, hasPicture = false } = req.body;
+  const { lecId, userId, text, hasPicture = false, isNote = false } = req.body;
 
   try {
-    const message = await Message.create({ lecId, userId, text, hasPicture });
+    const message = await Message.create({ lecId, userId, text, hasPicture, isNote });
     res.status(200).json(message);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -94,4 +108,5 @@ module.exports = {
   deleteMessage,
   updateMessage,
   getMessagesByLecture,
+  getMessagesByLectureNotes,
 };
