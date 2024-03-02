@@ -10,7 +10,8 @@ const message = require("./routes/messages");
 const course = require("./routes/courses");
 const notes = require("./routes/notes");
 const lecture = require("./routes/lectures");
-const takes = require("./routes/takes");
+// const takes = require("./routes/takes");
+const pictures = require("./routes/pictures");
 
 const config = {
   authRequired: false,
