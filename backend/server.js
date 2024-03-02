@@ -14,6 +14,7 @@ const config = {
 };
 console.log("PORT:", process.env.BASEURL);
 const user = require("./routes/users");
+const message = require("./routes/messages");
 const app = express();
 
 app.use(express.json());
@@ -26,9 +27,9 @@ app.use((req, res, next) => {
 app.use(auth(config));
 
 app.use("/api/users", user);
+app.use("/api/messages", message);
 app.get("/", (req, res) => {
   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
-  // res.json({ mssg: "works" });
 });
 
 //connect to db
