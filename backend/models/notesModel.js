@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 const notesSchema = new Schema(
   {
+    lecId: {
+      type: String,
+      required: true,
+    },
     msgId: {
       type: Number,
       required: true,
@@ -11,7 +15,7 @@ const notesSchema = new Schema(
     response: {
       type: String,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );

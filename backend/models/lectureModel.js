@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 
 const lectureModel = new Schema(
   {
-    courseId: {
-      type: Number,
+    courseCode: {
+      type: String,
       required: true,
     },
     lecNum: {
       type: Number,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );

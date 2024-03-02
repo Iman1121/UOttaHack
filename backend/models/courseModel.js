@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 const courseSchema = new Schema(
   {
+    courseCode: {
+      type: String,
+      required: true,
+    },
     timeslot: {
       type: String,
       required: true,
@@ -11,7 +15,7 @@ const courseSchema = new Schema(
     daySlot: {
       type: String,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );

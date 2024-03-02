@@ -4,6 +4,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
 
+//route imports
+const user = require("./routes/users");
+const message = require("./routes/messages");
+const course = require("./routes/courses");
+const notes = require("./routes/notes");
+const lecture = require("./routes/lectures");
+const takes = require("./routes/takes");
+
 const config = {
   authRequired: false,
   auth0Logout: true,
@@ -13,8 +21,6 @@ const config = {
   issuerBaseURL: process.env.ISSUERBASEURL,
 };
 console.log("PORT:", process.env.BASEURL);
-const user = require("./routes/users");
-const message = require("./routes/messages");
 const app = express();
 
 app.use(express.json());
@@ -26,8 +32,15 @@ app.use((req, res, next) => {
 
 app.use(auth(config));
 
+//api routes
 app.use("/api/users", user);
 app.use("/api/messages", message);
+app.use("/api/courses", course);
+app.use("/api/notes", notes);
+app.use("/api/lectures", lecture);
+app.use("/api/takes", takes);
+
+//auth
 app.get("/", (req, res) => {
   res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 });
