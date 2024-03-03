@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css'; 
 import TextForm from './TextForm'; 
+import FileUpload from './FileUpload';
 import Message from './Message'; // Assuming you have a MessageComponent defined
 
 const Chat = () => {
@@ -32,15 +33,24 @@ const Chat = () => {
       console.error('Error updating messages:', error);
     }
   };
+
+  const [url, setUrl] = useState('');
+
+  const handleUpload = (uploadedUrl) => {
+    setUrl(uploadedUrl);
+  };
+
   return (
     <div className="Chat">
       <div>Chat </div>
-      <TextForm updateMessages={updateMessages}/> 
+      
+      <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
+      <TextForm url = {url} updateMessages={updateMessages}/> 
       <div className="Messages">
         {messages.map(message => (
           <Message key={message._id} message={message} />
         ))}
-      </div>
+      </div> 
       
     </div>
   );
