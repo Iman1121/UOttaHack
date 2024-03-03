@@ -43,11 +43,11 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <div>Chat </div>
+      <div class="section_title">Chat </div>
       
       <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
       <TextForm url = {url} updateMessages={updateMessages}/> 
-      <div className="Messages">
+      <div className="messages">
         {messages.map(message => (
           <Message key={message._id} message={message} />
         ))}

@@ -76,8 +76,8 @@
 
   border-radius: 10px;
   padding: 10px;
-
-  flex: 1; 
+  flex: 1;
+  height: 100%; 
 
 }
 .Notes {
@@ -98,4 +98,16 @@
 .main-content {
   display: flex;
   flex-grow: 1;
+}
+
+.messages {
+  height: 80%;
+  overflow-y: auto;
+}
+
+.section_title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333; /* You can adjust the color as needed */
+  margin-bottom: 10px;
 }
