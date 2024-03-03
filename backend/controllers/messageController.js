@@ -54,10 +54,16 @@ const getMessage = async (req, res) => {
 
 //create user
 const createMessage = async (req, res) => {
-  const { lecId, userId, text, hasPicture = false, isNote = false } = req.body;
+  const { lecId, userId, text, pictureURI = null, isNote = false } = req.body;
 
   try {
-    const message = await Message.create({ lecId, userId, text, hasPicture, isNote });
+    const message = await Message.create({
+      lecId,
+      userId,
+      text,
+      pictureURI,
+      isNote,
+    });
     res.status(200).json(message);
   } catch (error) {
     res.status(400).json({ error: error.message });

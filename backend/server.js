@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
-const cors = require('cors');
+const cors = require("cors");
 //route imports
 const user = require("./routes/users");
 const message = require("./routes/messages");
@@ -12,7 +12,6 @@ const course = require("./routes/courses");
 const notes = require("./routes/notes");
 const lecture = require("./routes/lectures");
 const takes = require("./routes/takes");
-const pictures = require("./routes/pictures");
 const summaries = require("./routes/summaries");
 
 const config = {
@@ -22,7 +21,7 @@ const config = {
   baseURL: process.env.BASEURL,
   clientID: process.env.CLIENTID,
   issuerBaseURL: process.env.ISSUERBASEURL,
-};  
+};
 console.log("PORT:", process.env.BASEURL);
 const app = express();
 app.use(cors());
@@ -42,8 +41,7 @@ app.use("/api/messages", message);
 app.use("/api/courses", course);
 app.use("/api/notes", notes);
 app.use("/api/lectures", lecture);
-app.use("/api/pictures", pictures);
-app.use("/api/pictures", summaries);
+app.use("/api/summaries", summaries);
 app.use("/api/takes", takes);
 
 //auth

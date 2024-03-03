@@ -10,19 +10,19 @@ const messageSchema = new Schema(
     },
     userId: {
       type: Number,
-      required: true
+      required: true,
     },
     text: {
       type: String,
       required: true,
     },
-    hasPicture: {
-        type: Boolean,
-        default: false,
+    pictureURI: {
+      type: String,
+      default: false,
     },
     isNote: {
       type: Boolean,
-      default: false, 
+      default: false,
     },
   },
   { timestamps: true }
