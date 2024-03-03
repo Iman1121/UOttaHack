@@ -40,17 +40,17 @@ const getNotesByLecture = async (req, res) => {
 //   res.status(200).json(user);
 // };
 
-// //create user
-// const createUser = async (req, res) => {
-//   const { email, name, isStudent, isProf } = req.body;
-
-//   try {
-//     const user = await User.create({ email, name, isStudent, isProf });
-//     res.status(200).json(user);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// };
+//create user
+const createNote = async (req, res) => {
+  const { lecId,response,msgId,pictureURI} = req.body;
+  console.log(req.body)
+  try {
+    const note = await Notes.create({ lecId,response,msgId,pictureURI });
+    res.status(200).json(note);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 // //delete user
 // const deleteUser = async (req, res) => {
@@ -92,4 +92,5 @@ const getNotesByLecture = async (req, res) => {
 module.exports = {
   getNotes,
   getNotesByLecture,
+  createNote
 };
