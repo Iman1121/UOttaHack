@@ -26,7 +26,7 @@ const Home = () => {
     <div className="Home">
       <header className="header">
         <div className="section0">
-          <CourseInfo onSelect = {handleSelect}/>
+          <CourseInfo course = {course} onSelect = {handleSelect}/>
         </div>
         {/* <div className="section0">
           <HeaderContent />

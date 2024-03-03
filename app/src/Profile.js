@@ -12,9 +12,8 @@ const Profile = () => {
   };
   return (
     <div style={Profile}>
-      <div>Name: Dmac</div>
-      <div>Email: poo@example.com</div>
-      <div>Year: Second</div>
+      <div>Name: brian</div>
+      <div>Email: brian@example.com</div>
     </div>
   );
 };

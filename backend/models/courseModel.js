@@ -16,6 +16,10 @@ const courseSchema = new Schema(
       type: String,
       required: true,
     },
+    instructor: {
+      type: String,
+      required: true,
+    }
   },
   { timestamps: true }
 );
