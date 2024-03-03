@@ -101,11 +101,7 @@
 }
 
 .messages {
-  height: 75%;
-  overflow-y: auto;
-}
-.notes {
-  height: 103%;
+  height: 80%;
   overflow-y: auto;
 }
 
