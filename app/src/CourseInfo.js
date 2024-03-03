@@ -29,13 +29,13 @@ const CourseInfo = ({onSelect}) => {
       <div>
         <Dropdown options = {["COMP2404", "COMP2406"]} onSelect={onSelect}/>
       </div>
-      <div>Instructor: Darryl Hill</div>
+      <div> </div>
       </div>
       
       <div style={additionalInfoStyle}>
 
-        <div>Day: Monday</div>
-        <div>Time: 4pm-5:30pm</div>
+        <div> </div>
+        <div> </div>
       </div>
     </div>
   );
