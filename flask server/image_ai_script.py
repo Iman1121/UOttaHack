@@ -2,7 +2,7 @@ from openai import OpenAI
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from flask import Flask, request
-
+from flask_cors import CORS  # Import CORS from flask_cors  
 from dotenv import load_dotenv
 import os
 
@@ -12,7 +12,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
-
+CORS(app)
 # Send request to gpt
 def gpt_request(url, prompt):
 
@@ -56,7 +56,7 @@ def db_request(id, url, prompt):
 
     new_document = {
         "response": response,
-        "id": id
+        "lecId": id
     }
 
     return note_collection.insert_one(new_document)
@@ -64,10 +64,12 @@ def db_request(id, url, prompt):
 @app.route('/gpt-request', methods = ['POST'])
 def run_script():
     data = request.get_json()
-    id = data.get('id')
+    print("HIOI")
+    lecId = data.get('lecId')
+
     url = data.get('url')
     prompt = data.get('prompt')
-    db_request(id, url, prompt)
+    db_request(lecId, url, prompt)
     return "Success"
 
 if __name__ == '__main__':

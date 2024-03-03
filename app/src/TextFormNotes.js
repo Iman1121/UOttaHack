@@ -7,7 +7,16 @@ const TextFormNotes = ({lecId, url, updateNotes} ) => {
     event.preventDefault();
     
     try {
-      console.log(url);
+      if(url!=""&&url!=null&&inputValue!=""){
+        console.log(url)
+        await axios.post('http://127.0.0.1:5000/gpt-request', {
+          lecId: lecId,
+          url: url,
+          msgId:"",
+          prompt: inputValue
+        });
+        
+      }
       await axios.post('http://localhost:4000/api/notes/',{msgId:2, lecId: lecId, response: inputValue,pictureURI:url});
       updateNotes({ text: inputValue }); // Trigger message update in parent component
       setInputValue('');
@@ -15,6 +24,7 @@ const TextFormNotes = ({lecId, url, updateNotes} ) => {
       console.error('Error submitting message:', error);
       setInputValue('');
     }
+   
   };
 
   const handleChange = (event) => {

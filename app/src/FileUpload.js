@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
 
+
 const executePythonScript = async (file, prompt) => {
     try {
         const reader = new FileReader(); // Create a FileReader object
@@ -25,6 +26,7 @@ const executePythonScript = async (file, prompt) => {
 };
 
 async function uploadImage(file) { // file from <input type="file"> 
+
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", 'criqkqlz');
@@ -44,12 +46,15 @@ async function uploadImage(file) { // file from <input type="file">
 }
 
 const FileUpload = ({ setUrl, onUpload }) => {
+   
     const [selectedFile, setSelectedFile] = useState(null);
+    const [fileName, setFileName] = useState("No file selected");
     const [fileChosen, setFileChosen] = useState(false);
     const fileInputRef = useRef(null);
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
+        setFileName(event.target.files[0].name)
         setFileChosen(true); // Set fileChosen to true when a file has been selected
     };
 
@@ -59,17 +64,22 @@ const FileUpload = ({ setUrl, onUpload }) => {
         // You can also perform validation or any other necessary processing
 
         const uploadedUrl = await uploadImage(selectedFile);
+        console.log("testtt")
+        setFileName("No file selected")
+        setSelectedFile(null)
+        setFileChosen(false)
         setUrl(uploadedUrl);
         onUpload(uploadedUrl); // Pass the uploaded URL to the parent component
         // executePythonScript(selectedFile, "Can you summarize these notes");
         // console.log('Selected file:', selectedFile);
         // setFileChosen(false); // Reset fileChosen after upload
+        
     };
 
     const openFileDialog = () => {
         fileInputRef.current.click();
     };
-
+    
     return (
         <div style={{ display: 'flex', alignItems: 'flex-start' }}>
             <input
@@ -98,7 +108,7 @@ const FileUpload = ({ setUrl, onUpload }) => {
                 style={{
                     backgroundColor: 'rgb(204,113,120)',
                     color: 'white',
-                    border: 'none',
+                    border: 'none', 
                     borderRadius: '5px',
                     padding: '8px 16px',
                     marginLeft: '10px',
@@ -108,7 +118,7 @@ const FileUpload = ({ setUrl, onUpload }) => {
                 Upload
             </button>
             {fileChosen && (
-                <p style={{ marginLeft: '10px', marginTop: '0' }}>File Chosen: {selectedFile.name}</p>
+                <p style={{ marginLeft: '10px', marginTop: '0' }}>File Chosen: {fileName}</p>
             )}
         </div>
     );

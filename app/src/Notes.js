@@ -25,7 +25,7 @@ const Notes = ({lecture}) => {
 
       const response = await axios.get(`http://localhost:4000/api/notes/byLecture/${lecture}`);
       setNote(response.data);
-      console.log(response.data)
+      //console.log(response.data)
     } catch (error) {
       console.error('Error fetching notes:', error);
     }
@@ -48,6 +48,16 @@ const Notes = ({lecture}) => {
   const handleUpload = (uploadedUrl) => {
     setUrl(uploadedUrl);
   };
+
+  useEffect(() => {
+    if (url) {
+      const timer = setTimeout(() => {
+        setUrl(''); // Reset URL to initial value after a certain delay
+      }, 5000); // Change delay as per your requirement (here, it's 5000 milliseconds)
+
+      return () => clearTimeout(timer); // Clean up the timer on unmount or when url changes
+    }
+  }, [url]);
 
   return (
     <div className="notes">
