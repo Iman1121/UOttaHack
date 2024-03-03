@@ -10,6 +10,7 @@ const getUsers = async (req, res) => {
 
 //get one
 const getUser = async (req, res) => {
+  console.log(req)
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

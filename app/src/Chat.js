@@ -8,6 +8,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    
     fetchMessages(); // Fetch messages when component mounts
     const interval = setInterval(fetchMessages, 2000); // Fetch messages every 5 seconds
     return () => clearInterval(interval); // Cleanup interval on component unmount
