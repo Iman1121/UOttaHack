@@ -1,0 +1,12 @@
+{
+    "routes": [
+      {
+        "src": "/api/.*",
+        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+        "allowOrigins": ["https://example.com", "https://subdomain.example.com"],
+        "allowHeaders": ["Content-Type", "Authorization"],
+        "allowCredentials": true
+      }
+    ]
+  }
+  
