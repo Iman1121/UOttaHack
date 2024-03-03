@@ -1,12 +1,16 @@
 {
-    "routes": [
-      {
-        "src": "/api/.*",
-        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        "allowOrigins": ["https://example.com", "https://subdomain.example.com"],
-        "allowHeaders": ["Content-Type", "Authorization"],
-        "allowCredentials": true
+  "version": 2,
+  "routes": [
+    {
+      "handle": "compression"
+    },
+    {
+      "src": "/api/.",
+      "headers": {
+        "Access-Control-Allow-Origin": "",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization"
       }
-    ]
-  }
-  
+    }
+  ]
+}
