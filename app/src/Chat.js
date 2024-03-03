@@ -7,19 +7,20 @@ import TextForm from './TextForm';
 import FileUpload from './FileUpload';
 import Message from './Message'; // Assuming you have a MessageComponent defined
 
-const Chat = () => {
+const Chat = ({lecture}) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    
+    console.log(lecture);
+
     fetchMessages(); // Fetch messages when component mounts
     const interval = setInterval(fetchMessages, 2000); // Fetch messages every 5 seconds
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  }, [lecture]);
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/messages');
+      const response = await axios.get(`http://localhost:4000/api/messages/byLecture/${lecture}`);
       setMessages(response.data);
     } catch (error) {
       console.error('Error fetching messages:', error);

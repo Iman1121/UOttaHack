@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Dropdown from './Dropdown';
 
-const CourseInfo = () => {
+const CourseInfo = ({onSelect}) => {
   const courseInfoStyle = {
     display: 'flex', // Set display to flex
     justifyContent: 'space-between', // Align items with space-between
@@ -20,16 +21,20 @@ const CourseInfo = () => {
     flexDirection: 'column',
   };
 
+  
+
   return (
     <div style={courseInfoStyle}>
       <div style={courseStyle}>
-      <div>COMP2404</div>
+      <div>
+        <Dropdown options = {["COMP2404", "COMP2406"]} onSelect={onSelect}/>
+      </div>
       <div>Instructor: Darryl Hill</div>
       </div>
       
       <div style={additionalInfoStyle}>
 
-        <div>Room: UC</div>
+        <div>Day: Monday</div>
         <div>Time: 4pm-5:30pm</div>
       </div>
     </div>

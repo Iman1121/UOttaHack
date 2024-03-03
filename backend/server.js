@@ -29,7 +29,8 @@ app.use(bodyParser({ limit: "50mb" }));
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
+  if (req.path != "/api/messages")
+    console.log(req.path, req.method);
   next();
 });
 

@@ -1,0 +1,12 @@
+.custom-dropdown {
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* Safari and Chrome */
+    -moz-appearance: none; /* Firefox */
+    background-color: #fcadad; /* Fill dropdown with a certain color */
+    border: none; /* Remove border */
+    padding: 8px; /* Add padding */
+    font-family: 'Arial', sans-serif; /* Change font */
+    font-size: 24px; /* Change font size */
+    font-weight: bold;
+    color: #ffffff; /* Change font color */
+  }

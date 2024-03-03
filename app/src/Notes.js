@@ -7,21 +7,30 @@ import NoteComponent from './NoteComponent'; // Corrected component name
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
-
+  
   useEffect(() => {
+    
+    if(lecture == 'x'){
+      setNote([]);
+    }
+    
     fetchNotes(); // Fetch notes when component mounts
     const interval = setInterval(fetchNotes, 2000); // Fetch notes every 5 seconds
+
     return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, []);
+  }, [lecture]);
 
   const fetchNotes = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/notes');
-      setNotes(response.data);
+
+      const response = await axios.get(`http://localhost:4000/api/notes/byLecture/${lecture}`);
+      setNote(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error('Error fetching notes:', error);
     }
   };
+  
   const updateNotes = async (newMessage) => {
     try {
       
@@ -33,6 +42,7 @@ const Notes = () => {
       console.error('Error updating messages:', error);
     }
   };
+  
   const [url, setUrl] = useState('');
 
   const handleUpload = (uploadedUrl) => {
