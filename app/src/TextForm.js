@@ -6,11 +6,13 @@ const TextForm = ({updateMessages} ) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:4000/api/messages', { text: inputValue });
-      updateMessages(); // Trigger message update in parent component
+      await axios.post('http://localhost:4000/api/messages',{lecId:2, userId: 50,text: inputValue,hasPicture: false, isNote: false});
+     
+      updateMessages({ text: inputValue }); // Trigger message update in parent component
       setInputValue('');
     } catch (error) {
       console.error('Error submitting message:', error);
+      setInputValue('');
     }
   };
 
