@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import * as mdb from 'mdb-ui-kit'; // lib
 const TextForm = ({url, updateMessages} ) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     try {
-      await axios.post('http://localhost:4000/api/messages',{lecId:2, userId: 50,text: inputValue,pictureURI: url, isNote: false});
-     
+      console.log(url);
+      await axios.post('http://localhost:4000/api/messages',{lecId:2, userId: 50, text: inputValue,pictureURI: url, isNote: false});
       updateMessages({ text: inputValue }); // Trigger message update in parent component
       setInputValue('');
     } catch (error) {

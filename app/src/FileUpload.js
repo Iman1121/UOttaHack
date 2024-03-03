@@ -29,15 +29,16 @@ const executePythonScript = async (file, prompt) => {
 async function uploadImage(file) { // file from <input type="file"> 
   const data = new FormData();
   data.append("file", file);
-  // data.append("upload_preset", NAME_OF_UPLOAD_PRESET);
+  data.append("upload_preset", 'criqkqlz');
 
   const res = await fetch(
-    // `https://api.cloudinary.com/v1_1/${YOUR_ID}/image/upload`,
+    `https://api.cloudinary.com/v1_1/dgmplm2mm/image/upload`,
     {
       method: "POST",
       body: data,
     }
   );
+  console.log(res)
   const img = await res.json();
   console.log(img);
   return img.secure_url;
