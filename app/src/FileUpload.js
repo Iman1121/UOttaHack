@@ -23,6 +23,23 @@ const executePythonScript = async (file, prompt) => {
       console.error('Error:', error);
     }
 };
+
+async function uploadImage(file) { // file from <input type="file"> 
+  const data = new FormData();
+  data.append("file", file);
+  data.append("upload_preset", NAME_OF_UPLOAD_PRESET);
+
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${YOUR_ID}/image/upload`,
+    {
+      method: "POST",
+      body: data,
+    }
+  );
+  const img = await res.json();
+  // Post `img.secure_url` to your server and save to MongoDB
+}
+
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileChosen, setFileChosen] = useState(false);
@@ -32,11 +49,16 @@ const FileUpload = () => {
     setSelectedFile(event.target.files[0]);
     setFileChosen(true); // Set fileChosen to true when a file has been selected
   };
+  
 
+  
   const handleUpload = () => {
     // Here you can implement logic to upload the selected file
     // For example, you can send the file to a server using fetch or axios
     // You can also perform validation or any other necessary processing
+
+    uploadImage(selectedFile);
+
     executePythonScript(selectedFile, "Can you summarize these notes");
     console.log('Selected file:', selectedFile);
     setFileChosen(false); // Reset fileChosen after upload
