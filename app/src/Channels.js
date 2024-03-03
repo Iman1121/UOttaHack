@@ -2,48 +2,43 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LectureComponent from './LectureComponent'; // Component names should start with a capital letter
 import './App.css';
-const channelClass = {
 
-  justifyContent: 'space-between', // Align items with space-between
-  fontWeight: "bold",
+const channelClass = {
+  justifyContent: 'space-between',
+  fontWeight: 'bold',
   borderRadius: '5px',
-  color:'black',
-  paddingBottom: '10px', // Added padding for better spacing
+  color: 'black',
+  paddingBottom: '10px',
 };
-const Channels = () => {
-  const [lectures, setLectures] = useState([]); // Changed from setCourses to setLectures
+
+const Channels = ({ course, onSelect }) => {
+  const [lectures, setLectures] = useState([]);
 
   useEffect(() => {
-    fetchLectures();
-  }, []);
+    if (course.trim() !== '') { // Check if course is not empty or just whitespace
+      fetchLectures();
+    }
+  }, [course]); // Add course as a dependency to the useEffect hook
 
   const fetchLectures = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/lectures');
-      setLectures(response.data); // Changed from setCourses to setLectures
-      console.log(response.data)
+      const response = await axios.get(`http://localhost:4000/api/lectures/byCourse/${course}`);
+      setLectures(response.data);
     } catch (error) {
-      console.error('Error fetching lectures:', error); // Changed from 'Error fetching messages' to 'Error fetching lectures'
+      console.error('Error fetching lectures:', error);
     }
-  };
-
-  const [url, setUrl] = useState('');
-
-  const handleUpload = (uploadedUrl) => {
-    setUrl(uploadedUrl);
   };
 
   return (
     <div className="Channels">
       <div style={channelClass}>
-      <div class="section_title">Channels </div>
+        <div className="section_title">Channels</div>
       </div>
       <div className="lectures">
-        {lectures.map(lec => ( // Changed from Courses.map to lectures.map
-          <LectureComponent key={lec.courseCode} lec={lec  } /> // to LectureComponent
+        {lectures.map((lec) => (
+          <LectureComponent key={lec.courseCode} lec={lec} onClick = {onSelect}/>
         ))}
       </div>
- 
     </div>
   );
 };
