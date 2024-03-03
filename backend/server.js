@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const { auth } = require("express-openid-connect");
-
+const cors = require('cors');
 //route imports
 const user = require("./routes/users");
 const message = require("./routes/messages");
@@ -20,10 +20,10 @@ const config = {
   baseURL: process.env.BASEURL,
   clientID: process.env.CLIENTID,
   issuerBaseURL: process.env.ISSUERBASEURL,
-};
+};  
 console.log("PORT:", process.env.BASEURL);
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
