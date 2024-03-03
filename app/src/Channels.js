@@ -16,6 +16,7 @@ const Channels = ({ course, onSelect }) => {
 
   useEffect(() => {
     if (course.trim() !== '') { // Check if course is not empty or just whitespace
+      setLectures([]);
       fetchLectures();
     }
   }, [course]); // Add course as a dependency to the useEffect hook

@@ -28,7 +28,7 @@ const getLecturesByCourse = async (req, res) => {
   const { id } = req.params;
 
   const lectures = await Lecture.find({ courseCode: id }).sort({
-    createdAt: -1,
+    lecNum: -1,
   });
 
   if (!lectures) {
