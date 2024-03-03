@@ -49,7 +49,7 @@ const Chat = ({lecture}) => {
       <div className="section_title">Chat </div>
       
       <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
-      <TextForm url = {url} updateMessages={updateMessages}/> 
+      <TextForm lecId = {lecture} url = {url} updateMessages={updateMessages}/> 
       <div className="messages">
         {messages.map(message => (
           <Message key={message._id} message={message} />

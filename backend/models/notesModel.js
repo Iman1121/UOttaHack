@@ -14,11 +14,11 @@ const notesSchema = new Schema(
     },
     response: {
       type: String,
-      required: true,
+      default: "",
     },
     pictureURI: {
       type: String,
-      required: true,
+      default: "",
     },
   },
   { timestamps: true }

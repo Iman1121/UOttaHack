@@ -18,7 +18,7 @@ const messageSchema = new Schema(
     },
     text: {
       type: String,
-      required: true,
+      default: "",
     },
     pictureURI: {
       type: String,

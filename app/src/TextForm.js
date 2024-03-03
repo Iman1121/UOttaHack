@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-const TextForm = ({url, updateMessages} ) => {
+const TextForm = ({lecId,url, updateMessages} ) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    try {
-      console.log(url);
-      await axios.post('http://localhost:4000/api/messages',{lecId:2, userId: 50, userName: "brian", text: inputValue, pictureURI: url, isNote: false});
-      updateMessages({ text: inputValue }); // Trigger message update in parent component
-      setInputValue('');
-    } catch (error) {
-      console.error('Error submitting message:', error);
-      setInputValue('');
+    if(inputValue !== "" || url !== ""){
+      try {
+        console.log(url);
+        await axios.post('http://localhost:4000/api/messages',{lecId:lecId, userId: 50, userName: "brian", text: inputValue, pictureURI: url, isNote: false});
+        updateMessages({ text: inputValue }); // Trigger message update in parent component
+        setInputValue('');
+      } catch (error) {
+        console.error('Error submitting message:', error);
+        setInputValue('');
+      }
     }
+    
   };
 
   const handleChange = (event) => {

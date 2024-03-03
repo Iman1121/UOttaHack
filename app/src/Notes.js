@@ -5,8 +5,8 @@ import TextFormNotes from './TextFormNotes';
 import FileUpload from './FileUpload';
 import NoteComponent from './NoteComponent'; // Corrected component name
 
-const Notes = () => {
-  const [notes, setNotes] = useState([]);
+const Notes = ({lecture}) => {
+  const [notes, setNote] = useState([]);
   
   useEffect(() => {
     
@@ -36,7 +36,7 @@ const Notes = () => {
       
      
       const updatedResponse = await axios.get('/api/notes');
-      setNotes(updatedResponse.data);
+      setNote(updatedResponse.data);
       
     } catch (error) {
       console.error('Error updating messages:', error);
@@ -54,7 +54,7 @@ const Notes = () => {
       <div className="section_title">Notes</div>
       
       <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
-      <TextFormNotes url={url} updateNotes={updateNotes}/> {/* Assuming updateNotes is a prop to update notes */}
+      <TextFormNotes lecId = {lecture} url={url} updateNotes={updateNotes}/> {/* Assuming updateNotes is a prop to update notes */}
       <div className="messages">
         {notes.map(note => (
           <NoteComponent key={note.id} note={note} />
