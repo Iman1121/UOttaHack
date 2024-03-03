@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-
-const TextForm = () => {
+import axios from 'axios';
+const TextForm = ({updateMessages} ) => {
   const [inputValue, setInputValue] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here, e.g., send the input value to a server or perform some action
-    console.log('Form submitted with value:', inputValue);
-    setInputValue('');
+    try {
+      await axios.post('http://localhost:4000/api/messages', { text: inputValue });
+      updateMessages(); // Trigger message update in parent component
+      setInputValue('');
+    } catch (error) {
+      console.error('Error submitting message:', error);
+    }
   };
 
   const handleChange = (event) => {
