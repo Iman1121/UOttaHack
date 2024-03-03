@@ -11,7 +11,7 @@ const message = require("./routes/messages");
 const course = require("./routes/courses");
 const notes = require("./routes/notes");
 const lecture = require("./routes/lectures");
-// const takes = require("./routes/takes");
+const takes = require("./routes/takes");
 const pictures = require("./routes/pictures");
 const summaries = require("./routes/summaries");
 
@@ -41,10 +41,9 @@ app.use("/api/messages", message);
 app.use("/api/courses", course);
 app.use("/api/notes", notes);
 app.use("/api/lectures", lecture);
-// app.use("/api/takes", takes);
 app.use("/api/pictures", pictures);
 app.use("/api/pictures", summaries);
-// app.use("/api/takes", takes);
+app.use("/api/takes", takes);
 
 //auth
 app.get("/", (req, res) => {
