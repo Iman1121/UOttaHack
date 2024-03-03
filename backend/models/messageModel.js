@@ -12,6 +12,10 @@ const messageSchema = new Schema(
       type: Number,
       required: true,
     },
+    userName: {
+      type: String,
+      required: true,
+    },
     text: {
       type: String,
       required: true,
