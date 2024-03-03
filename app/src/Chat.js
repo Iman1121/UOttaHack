@@ -8,7 +8,9 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    fetchMessages();
+    fetchMessages(); // Fetch messages when component mounts
+    const interval = setInterval(fetchMessages, 2000); // Fetch messages every 5 seconds
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
 
   const fetchMessages = async () => {
@@ -19,10 +21,13 @@ const Chat = () => {
       console.error('Error fetching messages:', error);
     }
   };
-  const updateMessages = async () => {
+  const updateMessages = async (newMessage) => {
     try {
-      const response = await axios.get('/api/messages');
-      setMessages(response.data);
+      
+     
+      const updatedResponse = await axios.get('/api/messages');
+      setMessages(updatedResponse.data);
+      
     } catch (error) {
       console.error('Error updating messages:', error);
     }
@@ -30,12 +35,13 @@ const Chat = () => {
   return (
     <div className="Chat">
       <div>Chat </div>
+      <TextForm updateMessages={updateMessages}/> 
       <div className="Messages">
         {messages.map(message => (
           <Message key={message._id} message={message} />
         ))}
       </div>
-      <TextForm updateMessages={updateMessages}/> 
+      
     </div>
   );
 };
