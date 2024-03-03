@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css'; 
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./App.css";
 
+import TextForm from "./TextForm";
+import FileUpload from "./FileUpload";
+import Message from "./Message"; // Assuming you have a MessageComponent defined
 
-import TextForm from './TextForm'; 
-import FileUpload from './FileUpload';
-import Message from './Message'; // Assuming you have a MessageComponent defined
-
-const Chat = ({lecture}) => {
+const Chat = ({ lecture }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -20,25 +19,24 @@ const Chat = ({lecture}) => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/messages/byLecture/${lecture}`);
+      const response = await axios.get(
+        `http://3.12.108.173:4000/api/messages/byLecture/${lecture}`
+      );
       setMessages(response.data);
     } catch (error) {
-      console.error('Error fetching messages:', error);
+      console.error("Error fetching messages:", error);
     }
   };
   const updateMessages = async (newMessage) => {
     try {
-      
-     
-      const updatedResponse = await axios.get('/api/messages');
+      const updatedResponse = await axios.get("/api/messages");
       setMessages(updatedResponse.data);
-      
     } catch (error) {
-      console.error('Error updating messages:', error);
+      console.error("Error updating messages:", error);
     }
   };
 
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState("");
 
   const handleUpload = (uploadedUrl) => {
     setUrl(uploadedUrl);
@@ -47,15 +45,14 @@ const Chat = ({lecture}) => {
   return (
     <div className="Chat">
       <div className="section_title">Chat </div>
-      
-      <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
-      <TextForm lecId = {lecture} url = {url} updateMessages={updateMessages}/> 
+
+      <FileUpload setUrl={setUrl} onUpload={handleUpload} />
+      <TextForm lecId={lecture} url={url} updateMessages={updateMessages} />
       <div className="messages">
-        {messages.map(message => (
+        {messages.map((message) => (
           <Message key={message._id} message={message} />
         ))}
-      </div> 
-      
+      </div>
     </div>
   );
 };
