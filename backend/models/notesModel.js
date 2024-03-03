@@ -16,6 +16,10 @@ const notesSchema = new Schema(
       type: String,
       required: true,
     },
+    pictureURI: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
