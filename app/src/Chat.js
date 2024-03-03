@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css'; 
-import { Dropdown, initMDB } from "mdb-ui-kit";
 
 
 import TextForm from './TextForm'; 
@@ -46,7 +45,7 @@ const Chat = () => {
 
   return (
     <div className="Chat">
-      <div class="section_title">Chat </div>
+      <div className="section_title">Chat </div>
       
       <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
       <TextForm url = {url} updateMessages={updateMessages}/> 
