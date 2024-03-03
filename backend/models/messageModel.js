@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const messageSchema = new Schema(
   {
     lecId: {
-      type: Number,
+      type: String,
       required: true,
     },
     userId: {
-      type: Number,
+      type: String,
       required: true,
     },
     userName: {
