@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import * as mdb from 'mdb-ui-kit'; // lib
 const TextForm = ({url, updateMessages} ) => {
   const [inputValue, setInputValue] = useState('');
 
