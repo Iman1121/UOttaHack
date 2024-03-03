@@ -53,16 +53,22 @@ const getMessage = async (req, res) => {
 };
 
 //create user
-  const createMessage = async (req, res) => {
-    const { lecId, userId, text, hasPicture = false, isNote = false } = req.body;
-    console.log(req.body)
-    try {
-      const message = await Message.create({ lecId, userId, text, hasPicture, isNote });
-      res.status(200).json(message);
-    } catch (error) {
-      res.status(400).json({ error: error.message });
-    }
-  };
+const createMessage = async (req, res) => {
+  const { lecId, userId, text, pictureURI = null, isNote = false } = req.body;
+
+  try {
+    const message = await Message.create({
+      lecId,
+      userId,
+      text,
+      pictureURI,
+      isNote,
+    });
+    res.status(200).json(message);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 //delete user
 const deleteMessage = async (req, res) => {

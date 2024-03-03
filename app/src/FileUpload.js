@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios';
+import './App.css'; 
 const executePythonScript = async (file, prompt) => {
 
     try {
@@ -37,10 +39,12 @@ async function uploadImage(file) { // file from <input type="file">
     }
   );
   const img = await res.json();
+  console.log(img);
+  return img.secure_url;
   // Post `img.secure_url` to your server and save to MongoDB
 }
 
-const FileUpload = () => {
+const FileUpload = ({setUrl, onUpload}) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileChosen, setFileChosen] = useState(false);
   const fileInputRef = useRef(null);
@@ -52,16 +56,17 @@ const FileUpload = () => {
   
 
   
-  const handleUpload = () => {
+  const handleUpload = async () => {
     // Here you can implement logic to upload the selected file
     // For example, you can send the file to a server using fetch or axios
     // You can also perform validation or any other necessary processing
 
-    uploadImage(selectedFile);
-
-    executePythonScript(selectedFile, "Can you summarize these notes");
-    console.log('Selected file:', selectedFile);
-    setFileChosen(false); // Reset fileChosen after upload
+    const uploadedUrl = await uploadImage(selectedFile);
+    setUrl(uploadedUrl);
+    onUpload(uploadedUrl); // Pass the uploaded URL to the parent component
+    // executePythonScript(selectedFile, "Can you summarize these notes");
+    // console.log('Selected file:', selectedFile);
+    // setFileChosen(false); // Reset fileChosen after upload
   };
 
   const openFileDialog = () => {
@@ -104,25 +109,7 @@ const FileUpload = () => {
         Upload
       </button>
 
-      <form action = "http://127.0.0.1:5000/run-python-script" method = "post" encType="multipart/form-data"
-      >   
-        <input type="file" name="file" style={{
-          backgroundColor: 'rgb(204,113,120)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          padding: '8px 16px',
-          cursor: 'pointer',
-        }}/>   
-        <input type = "submit" value="Upload" style={{
-          backgroundColor: 'rgb(204,113,120)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          padding: '8px 16px',
-          marginLeft: '10px',
-        }}/>    
-      </form>  
+
 
     </div>
 
