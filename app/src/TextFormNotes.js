@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-const TextFormNotes = ({url, updateNotes} ) => {
+const TextFormNotes = ({url, updateMessages} ) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = async (event) => {
@@ -8,10 +8,10 @@ const TextFormNotes = ({url, updateNotes} ) => {
     
     try {
       console.log(url);
-      await axios.post('http://localhost:4000/api/notes',{msgId:2, lecId: 50, response: inputValue,URI:url});
-      updateNotes({ text: inputValue }); // Trigger message update in parent component
+      await axios.post('http://localhost:4000/api/notes',{msgId:2, lecId: 50, response: inputValue});
+      updateMessages({ text: inputValue }); // Trigger message update in parent component
       setInputValue('');
-    } catch (error) {       
+    } catch (error) {
       console.error('Error submitting message:', error);
       setInputValue('');
     }
