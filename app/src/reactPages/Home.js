@@ -1,10 +1,10 @@
-import React from 'react';
-import CourseInfo from './CourseInfo';
-import HeaderContent from './Header';
-import Profile from './Profile';
-import Channels from './Channels';
-import Chat from './Chat';
-import Notes from './Notes';
+import React from "react";
+import CourseInfo from "../CourseInfo";
+import HeaderContent from "../Header";
+import Profile from "../Profile";
+import Channels from "../Channels";
+import Chat from "../Chat";
+import Notes from "../Notes";
 
 const Home = () => {
   return (
@@ -23,19 +23,13 @@ const Home = () => {
 
       <main className="main-content">
         <div className="sectionChannel">
-   
-            <Channels />
-         
+          <Channels />
         </div>
         <div className="section2">
-          
-            <Chat />
-        
+          <Chat />
         </div>
         <div className="section2">
-         
-            <Notes />
-         
+          <Notes />
         </div>
       </main>
     </div>
