@@ -3,12 +3,12 @@ import axios from 'axios';
 import './App.css'; 
 
 
-import TextForm from './TextForm'; 
+import TextFormNotes from './TextFormNotes'; 
 import FileUpload from './FileUpload';
 import Message from './Message'; // Assuming you have a MessageComponent defined
 
 const Notes = () => {
-  const [messages, setMessages] = useState([]);
+  const [notes, setNote] = useState([]);
 
   useEffect(() => {
     
@@ -19,8 +19,9 @@ const Notes = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/messages');
-      setMessages(response.data);
+      const response = await axios.get('http://localhost:4000/api/notes');
+      setNote(response.data);
+      console.log(response.data)
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
@@ -29,8 +30,8 @@ const Notes = () => {
     try {
       
      
-      const updatedResponse = await axios.get('/api/messages');
-      setMessages(updatedResponse.data);
+      const updatedResponse = await axios.get('/api/notes');
+      setNote(updatedResponse.data);
       
     } catch (error) {
       console.error('Error updating messages:', error);
@@ -48,10 +49,10 @@ const Notes = () => {
       <div className="section_title">Notes </div>
       
       <FileUpload setUrl={setUrl} onUpload={handleUpload}/>
-      <TextForm url = {url} updateMessages={updateMessages}/> 
+      <TextFormNotes url = {url} updateMessages={updateMessages}/> 
       <div className="messages">
-        {messages.map(message => (
-          <Message key={message._id} message={message} />
+        {notes.map(note => (
+          <notes key={note.id} note={note} />
         ))}
       </div> 
       
