@@ -20,7 +20,7 @@ const Chat = ({ lecture }) => {
   const fetchMessages = async () => {
     try {
       const response = await axios.get(
-        `http://3.12.108.173:4000/api/messages/byLecture/${lecture}`
+        `https://academeetbackend.vercel.app/api/messages/byLecture/${lecture}`
       );
       setMessages(response.data);
     } catch (error) {

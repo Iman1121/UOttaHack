@@ -22,7 +22,7 @@ const Notes = ({ lecture }) => {
   const fetchNotes = async () => {
     try {
       const response = await axios.get(
-        `http://3.12.108.173:4000/api/notes/byLecture/${lecture}`
+        `https://academeetbackend.vercel.app/api/notes/byLecture/${lecture}`
       );
       setNote(response.data);
       //console.log(response.data)

@@ -16,7 +16,7 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
           prompt: inputValue,
         });
       }
-      await axios.post("http://3.12.108.173:4000/api/notes/", {
+      await axios.post("https://academeetbackend.vercel.app/api/notes/", {
         msgId: 2,
         lecId: lecId,
         response: inputValue,

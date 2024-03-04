@@ -9,7 +9,7 @@ const TextForm = ({ lecId, url, updateMessages }) => {
     if (inputValue !== "" || url !== "") {
       try {
         console.log(url);
-        await axios.post("http://3.12.108.173:4000/api/messages", {
+        await axios.post("https://academeetbackend.vercel.app/api/messages", {
           lecId: lecId,
           userId: 50,
           userName: "brian",
