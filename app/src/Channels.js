@@ -24,9 +24,7 @@ const Channels = ({ course, onSelect }) => {
 
   const fetchLectures = async () => {
     try {
-      const response = await axios.get(
-        `http://3.12.108.173:4000/api/lectures/byCourse/${course}`
-      );
+      const response = await axios.get(`https://academeetbackend.vercel.app/api/lectures/byCourse/${course}`);
       setLectures(response.data);
     } catch (error) {
       console.error("Error fetching lectures:", error);

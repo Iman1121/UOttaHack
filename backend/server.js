@@ -22,9 +22,16 @@ const config = {
   clientID: process.env.CLIENTID,
   issuerBaseURL: process.env.ISSUERBASEURL,
 };
+
+const corsOptions = {
+  origin: '*',
+  methods: 'GET, POST',
+  allowedHeaders: 'Content-Type, Authorization',
+};
+
 console.log("PORT:", process.env.BASEURL);
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser({ limit: "50mb" }));
 app.use(express.json());
 

@@ -9,7 +9,7 @@ const Notes = ({ lecture }) => {
   const [notes, setNote] = useState([]);
 
   useEffect(() => {
-    if (lecture == "x") {
+    if (lecture === "x") {
       setNote([]);
     }
 

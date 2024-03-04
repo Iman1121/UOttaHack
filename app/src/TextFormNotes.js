@@ -7,7 +7,7 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
     event.preventDefault();
 
     try {
-      if (url != "" && url != null && inputValue != "") {
+      if (url !== "" && url !== null && inputValue !== "") {
         console.log(url);
         await axios.post("http://127.0.0.1:5000/gpt-request", {
           lecId: lecId,
