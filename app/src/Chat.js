@@ -49,10 +49,14 @@ const Chat = ({ lecture }) => {
       <FileUpload setUrl={setUrl} onUpload={handleUpload} />
       <TextForm lecId={lecture} url={url} updateMessages={updateMessages} />
       <div className="messages">
-        {messages.map((message) => (
+      {Array.isArray(messages) ? (
+        messages.map((message) => (
           <Message key={message._id} message={message} />
-        ))}
-      </div>
+        ))
+      ) : (
+        <p>No messages to display</p>
+      )}
+</div>
     </div>
   );
 };
