@@ -10,7 +10,7 @@ const Chat = ({ lecture }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    console.log(lecture);
+    console.log(messages);
 
     fetchMessages(); // Fetch messages when component mounts
     const interval = setInterval(fetchMessages, 2000); // Fetch messages every 5 seconds
