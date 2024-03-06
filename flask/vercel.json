@@ -4,6 +4,13 @@
       { "src": "/image_ai_script.py", "use": "@vercel/python" }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "image_ai_script.py" }
+      { 
+        "src": "/(.*)", 
+        "dest": "image_ai_script.py" ,
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        "headers": {
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
     ]
   }
