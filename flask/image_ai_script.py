@@ -38,7 +38,7 @@ def gpt_request(url, prompt):
     return response.choices[0].message.content
 
 def db_request(id, url, prompt):
-    uri = "mongodb+srv://imanullah1112:ImanUllah@uottahack.oi3vja4.mongodb.net/?retryWrites=true"
+    uri = "mongodb+srv://imanullah1112:ImanUllah@uottahack.oi3vja4.mongodb.net/"
 
     # Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
@@ -61,21 +61,27 @@ def db_request(id, url, prompt):
 
     return note_collection.insert_one(new_document)
 
-@app.route('/gpt-request', methods = ['POST'])
-def run_script():
-    data = request.get_json()
-    print("HIOI")
-    lecId = data.get('lecId')
+# @app.route('/gpt-request', methods = ['POST'])
+# def run_script():
+#     data = request.get_json()
+#     print("HIOI")
+#     lecId = data.get('lecId')
 
+#     url = data.get('url')
+#     prompt = data.get('prompt')
+#     db_request(lecId, url, prompt)
+#     return "Success"
+
+@app.route('/get', methods = ['POST'])
+def home():
+    data = request.get_json()
+    lecId = data.get('lecId')
     url = data.get('url')
     prompt = data.get('prompt')
+    print(lecId, url, prompt)
     db_request(lecId, url, prompt)
     return "Success"
 
-@app.route('/')
-def home():
-    return "Home"
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=6000)
 

@@ -9,7 +9,7 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
     try {
       if (url !== "" && url !== null && inputValue !== "") {
         console.log(url);
-        await axios.post("http://127.0.0.1:5000/gpt-request", {
+        await axios.post("https://u-otta-hack.vercel.app/get-request", {
           lecId: lecId,
           url: url,
           msgId: "",
