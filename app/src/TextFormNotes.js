@@ -14,14 +14,14 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
           url: url,
           msgId: "",
           prompt: inputValue,
-        }, { timeout: 300000 });
+        }, { timeout: 0 });
       }
       await axios.post("https://academeetbackend.vercel.app/api/notes/", {
         msgId: 2,
         lecId: lecId,
         response: inputValue,
         pictureURI: url,
-      });
+      }, { timeout: 0 });
       updateNotes({ text: inputValue }); // Trigger message update in parent component
       setInputValue("");
     } catch (error) {
