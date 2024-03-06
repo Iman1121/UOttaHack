@@ -73,6 +73,7 @@ def db_request(id, url, prompt):
 #     return "Success"
 
 @app.route('/get', methods = ['POST'])
+@CORS()
 def home():
     data = request.get_json()
     lecId = data.get('lecId')
