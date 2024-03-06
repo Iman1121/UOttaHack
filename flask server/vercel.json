@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "image_ai_script.py", "use": "@vercel/python" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/image_ai_script.py" }
+    ]
+  }
