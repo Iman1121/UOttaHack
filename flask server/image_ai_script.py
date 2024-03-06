@@ -72,6 +72,10 @@ def run_script():
     db_request(lecId, url, prompt)
     return "Success"
 
+@app.route('/')
+def home():
+    return "Home"
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
 
