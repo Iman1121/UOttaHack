@@ -7,7 +7,7 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
     event.preventDefault();
 
     try {
-      if (url !== "" && url !== null && inputValue !== "") {
+      if (url !== "" && url !== null && url !== undefined && inputValue !== "") {
         console.log(url);
         await axios.post("https://u-otta-hack.vercel.app/get", {
           lecId: lecId,

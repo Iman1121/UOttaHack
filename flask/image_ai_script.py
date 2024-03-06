@@ -53,6 +53,7 @@ def db_request(id, url, prompt):
     db = client['test']
     note_collection = db["notes"]
     response = gpt_request(url, prompt)
+    print(response)
 
     new_document = {
         "response": response,
