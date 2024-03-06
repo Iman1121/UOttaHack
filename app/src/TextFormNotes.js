@@ -14,7 +14,7 @@ const TextFormNotes = ({ lecId, url, updateNotes }) => {
           url: url,
           msgId: "",
           prompt: inputValue,
-        });
+        }, { timeout: 300000 });
       }
       await axios.post("https://academeetbackend.vercel.app/api/notes/", {
         msgId: 2,
