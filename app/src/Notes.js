@@ -63,9 +63,13 @@ const Notes = ({ lecture }) => {
       <TextFormNotes lecId={lecture} url={url} updateNotes={updateNotes} />{" "}
       {/* Assuming updateNotes is a prop to update notes */}
       <div className="messages">
-        {notes.map((note) => (
-          <NoteComponent key={note.id} note={note} />
-        ))}
+        {Array.isArray(notes) ? (
+          notes.map((note) => (
+            <NoteComponent key={note.id} note={note} />
+          ))
+        ) : (
+          <p>No messages to display</p>
+        )}
       </div>
     </div>
   );
