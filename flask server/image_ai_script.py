@@ -38,7 +38,7 @@ def gpt_request(url, prompt):
     return response.choices[0].message.content
 
 def db_request(id, url, prompt):
-    uri = "mongodb+srv://imanullah1112:ImanUllah@uottahack.oi3vja4.mongodb.net/?retryWrites=true&w=majority&appName=UOttaHack"
+    uri = "mongodb+srv://imanullah1112:ImanUllah@uottahack.oi3vja4.mongodb.net/?retryWrites=true"
 
     # Create a new client and connect to the server
     client = MongoClient(uri, server_api=ServerApi('1'))
@@ -73,5 +73,5 @@ def run_script():
     return "Success"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=6060)
+    app.run(host='0.0.0.0')
 
